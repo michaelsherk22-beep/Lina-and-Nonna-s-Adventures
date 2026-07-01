@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lina & Nonna Adventures</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="description" content="Family mini-games for Lina and Nonna, hosted on GitHub Pages." />
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/games.css" />
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div>
+      <div class="title">Lina &amp; Nonna Adventures</div>
+      <div class="subtitle">Mini‑games about family, food, and the trip from Dallas–Fort Worth to El Paso.</div>
+      <div class="badge-row">
+        <div class="badge">Mexico • Italy • Texas</div>
+        <div class="badge">Two‑player bonding</div>
+        <div class="badge">Made with HTML, CSS &amp; JS</div>
+      </div>
+    </div>
+    <div class="badge">
+      GitHub Pages<br /><span style="font-size:0.7rem;">index.html at repo root.</span>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH HOME-SCREEN IMAGE -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <div class="eyebrow">🌸 Family Game Hub</div>
+        <h1>Lina &amp; Nonna <span class="accent">Adventures</span></h1>
+        <p>
+          A playful web game collection for Lina and Nonna to laugh, talk, remember family stories,
+          and enjoy summer visits together across Texas with love from Mexico and Italy.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-game="kitchen">Play Nonna’s Kitchen</button>
+          <button class="btn btn-secondary" data-game="travel">See Trip Game</button>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <!-- Main home-screen image (place the file at assets/hero/lina-nonna-hero.jpg) -->
+        <img
+          src="./assets/hero/lina-nonna-hero.png"
+          alt="Lina and Nonna walking through a magical archway for Lina & Nonna's Adventures."
+          class="hero-img"
+        />
+        <div class="art-card one">🍳 Cooking • Stories • Dress‑Up</div>
+        <div class="art-card two">🚗 Dallas–Fort Worth → El Paso</div>
+        <div class="marker-row">
+          <span>Dallas–Fort Worth</span>
+          <span>West Texas</span>
+          <span>El Paso</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <!-- LEFT: MAIN MENU -->
+    <aside class="panel panel-alt">
+      <h2>Main Menu</h2>
+      <div class="menu-grid">
+        <button data-game="kitchen">
+          <div class="menu-label">Nonna’s Kitchen</div>
+          <div class="menu-desc">Memory matching with food &amp; photos. Lina vs Nonna.</div>
+          <div class="menu-tag-row">
+            <div class="menu-tag puzzle">4×4 grid</div>
+            <div class="menu-tag">Two players</div>
+          </div>
+        </button>
+        <button data-game="travel">
+          <div class="menu-label">Trip: Dallas → El Paso</div>
+          <div class="menu-desc">Board‑style path game with storytelling events.</div>
+          <div class="menu-tag-row">
+            <div class="menu-tag story">Family stories</div>
+            <div class="menu-tag">Virtual die</div>
+          </div>
+        </button>
+        <button data-game="memoryStories">
+          <div class="menu-label">Memory Stories Spinner</div>
+          <div class="menu-desc">Prompt spinner for Italy, Texas, school, &amp; childhood stories.</div>
+          <div class="menu-tag-row">
+            <div class="menu-tag story">Conversation‑first</div>
+          </div>
+        </button>
+        <button data-game="puzzle">
+          <div class="menu-label">Picture Puzzle</div>
+          <div class="menu-desc">Sliding jigsaw with a photo of Lina &amp; Nonna.</div>
+          <div class="menu-tag-row">
+            <div class="menu-tag puzzle">3×3 / 4×4</div>
+          </div>
+        </button>
+        <button data-game="dressup">
+          <div class="menu-label">Lina &amp; Nonna Dress‑Up</div>
+          <div class="menu-desc">Change outfits: Italian dress, Texas T‑shirt, chef apron, and more.</div>
+          <div class="menu-tag-row">
+            <div class="menu-tag">Avatar creator</div>
+          </div>
+        </button>
+      </div>
+    </aside>
+
+    <!-- RIGHT: ACTIVE GAME AREA -->
+    <main class="panel">
+      <!-- GAME 1: NONNA'S KITCHEN MEMORY MATCH -->
+      <section id="game-kitchen" class="game-container active">
+        <div class="game-header">
+          <div>
+            <h3>Nonna’s Kitchen — Memory Match</h3>
+            <span>Flip cards to find pairs. Count matches for Lina and Nonna.</span>
+          </div>
+          <div>
+            <button class="btn small secondary" id="btnKitchenReset">New round</button>
+          </div>
+        </div>
+
+        <div class="game-row">
+          <div>
+            <div class="score-box">
+              <div>
+                <div class="score-label">Lina’s matches</div>
+                <div class="score-value lina" id="scoreLina">0</div>
+              </div>
+              <div>
+                <div class="score-label">Nonna’s matches</div>
+                <div class="score-value nonna" id="scoreNonna">0</div>
+              </div>
+              <div>
+                <div class="score-label">Turn</div>
+                <div class="score-value" id="turnLabel">Lina</div>
+              </div>
+              <div>
+                <div class="score-label">Pairs left</div>
+                <div class="score-value" id="pairsLeft">8</div>
+              </div>
+            </div>
+
+            <div class="controls-row">
+              <button class="btn small secondary" id="btnKitchenLinaStarts">Lina starts</button>
+              <button class="btn small secondary" id="btnKitchenNonnaStarts">Nonna starts</button>
+            </div>
+
+            <div class="card-grid" id="kitchenGrid">
+              <!-- cards injected by JS -->
+            </div>
+          </div>
+
+          <div>
+            <div class="recipe-box">
+              <div class="recipe-label">Nonna’s Recipe Prompt</div>
+              <div class="recipe-text" id="recipeText">
+                Find a matching pair to unlock a story prompt about food, places, and family. When you
+                match a food, talk about how you make it or a memory of eating it together.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Other games: containers only; JS will fill logic later -->
+      <section id="game-travel" class="game-container">
+        <div class="game-header">
+          <div>
+            <h3>Trip from Dallas–Fort Worth to El Paso</h3>
+            <span>Roll the die, move along the path, and tell stories when you land on event tiles.</span>
+          </div>
+          <div>
+            <button class="btn small secondary" id="btnTravelReset">Reset path</button>
+          </div>
+        </div>
+        <div class="game-row">
+          <div class="travel-panel">
+            <div>
+              <span class="score-label">Position</span>:
+              <span class="score-value" id="travelPosLabel">0</span> / 19
+            </div>
+            <div class="controls-row" style="margin-top:6px;">
+              <button class="btn primary small" id="btnTravelRoll">Roll die (1–3)</button>
+              <span class="tagline" id="travelMessage">Click “Roll die” and move your token along the road.</span>
+            </div>
+            <div class="travel-board" id="travelBoard"></div>
+          </div>
+          <div class="prompt-panel">
+            <div class="prompt-text" id="travelPrompt">
+              When you land on a special tile, you’ll see a prompt here: stories about Italy, Texas, or school.
+            </div>
+            <div class="tagline">
+              Suggested use: Let Lina roll, and Nonna helps read prompts and share stories.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="game-memoryStories" class="game-container">
+        <div class="game-header">
+          <div>
+            <h3>Memory Stories Spinner</h3>
+            <span>Click the button to get a new prompt. Take turns answering.</span>
+          </div>
+        </div>
+        <div class="game-row">
+          <div class="prompt-panel">
+            <div class="prompt-text" id="storyPromptText">
+              Click “Spin Prompt” to start. You’ll get questions about Italy memories, Texas adventures,
+              school stories, and Nonna’s childhood.
+            </div>
+            <div class="controls-row">
+              <button class="btn primary" id="btnStorySpin">Spin Prompt</button>
+              <button class="btn secondary" id="btnStoryCategory">Change category</button>
+            </div>
+            <div class="tagline" id="storyCategoryLabel">
+              Current category: All mixed. You can cycle categories for more focused stories.
+            </div>
+          </div>
+          <div class="prompt-panel">
+            <div class="tagline">
+              House rule: Give each completed prompt 1 “story point.” After 10 prompts, celebrate.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="game-puzzle" class="game-container">
+        <div class="game-header">
+          <div>
+            <h3>Picture Puzzle (Preview)</h3>
+            <span>Simple 3×3 tile shuffle now; later, swap in a photo of Lina &amp; Nonna.</span>
+          </div>
+          <div>
+            <button class="btn small secondary" id="btnPuzzleShuffle">Shuffle</button>
+          </div>
+        </div>
+        <div class="game-row">
+          <div class="puzzle-panel">
+            <div id="puzzleBoard"></div>
+            <div class="tagline" style="margin-top:6px;">
+              Click two tiles to swap them. Try to arrange them back into order (1–9). Later, use
+              background images for a real photo puzzle.
+            </div>
+          </div>
+          <div class="prompt-panel">
+            <div class="tagline">
+              Technical note: later you can replace numbers with <code>background-image</code> slices.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="game-dressup" class="game-container">
+        <div class="game-header">
+          <div>
+            <h3>Lina &amp; Nonna Dress‑Up</h3>
+            <span>Pick outfits now; add real PNG cutouts of Lina and Nonna later.</span>
+          </div>
+        </div>
+        <div class="game-row">
+          <div class="dress-panel">
+            <div class="dress-preview" id="dressPreview">
+              Outfit: <strong>Italian dress + Chef apron</strong><br />
+              Later, you’ll see real cutout images of Lina and Nonna here with layered PNG outfits.
+            </div>
+            <div class="dress-options">
+              <button class="dress-chip selected" data-outfit="Italian dress + Chef apron">Italian dress + Chef apron</button>
+              <button class="dress-chip" data-outfit="Texas T‑shirt + Jeans">Texas T‑shirt + Jeans</button>
+              <button class="dress-chip" data-outfit="Party dress + Sneakers">Party dress + Sneakers</button>
+              <button class="dress-chip" data-outfit="Comfy pajamas">Comfy pajamas</button>
+              <button class="dress-chip" data-outfit="School clothes">School clothes</button>
+            </div>
+          </div>
+          <div class="prompt-panel">
+            <div class="tagline">
+              Screenshot idea: once PNG cutouts are in place, Lina and Nonna can screenshot favorite looks.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- JS entrypoint -->
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>
