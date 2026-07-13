@@ -91,9 +91,10 @@ header{display:flex;justify-content:space-between;align-items:flex-start;flex-wr
 .travel-token{position:absolute;inset:2px;border-radius:6px;border:2px solid var(--accent);}
 .prompt-text{font-size:0.95rem;color:var(--accent-soft);min-height:40px;margin-bottom:8px;}
 .tagline{font-size:0.75rem;color:var(--muted);}
-#puzzleBoard{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:240px;}
-.puzzle-tile{aspect-ratio:1/1;background:var(--panel-alt);border:1px solid rgba(148,163,184,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;cursor:pointer;color:var(--accent-soft);}
-.puzzle-tile.empty{background:transparent;border-style:dashed;cursor:default;}
+#puzzleBoard{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:270px;background:var(--panel-alt);padding:4px;border-radius:10px;border:1px solid rgba(148,163,184,0.4);}
+.puzzle-tile{position:relative;aspect-ratio:1/1;background-image:url('./assets/hero/lina-nonna-hero.png');background-size:300% 300%;border-radius:6px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(148,163,184,0.5);transition:transform .15s;}
+.puzzle-tile:hover{transform:scale(1.03);}
+.puzzle-tile.empty{background-image:none;background:transparent;border-style:dashed;border:1px dashed rgba(148,163,184,0.5);cursor:default;box-shadow:none;}
 .dress-preview{height:170px;border-radius:12px;border:1px dashed rgba(148,163,184,0.5);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:2.4rem;background:#0b1120;gap:6px;}
 .dress-preview .cap{font-size:0.85rem;color:var(--muted);text-align:center;}
 .dress-options{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
@@ -163,7 +164,7 @@ header{display:flex;justify-content:space-between;align-items:flex-start;flex-wr
         </button>
         <button data-game="puzzle">
           <div class="menu-label">Picture Puzzle</div>
-          <div class="menu-desc">Sliding jigsaw puzzle with numbers.</div>
+          <div class="menu-desc">Sliding jigsaw puzzle of Lina &amp; Nonna.</div>
           <div class="menu-tag-row"><div class="menu-tag puzzle">3×3</div></div>
         </button>
         <button data-game="dressup">
@@ -248,15 +249,15 @@ header{display:flex;justify-content:space-between;align-items:flex-start;flex-wr
 
       <section id="game-puzzle" class="game-container">
         <div class="game-header">
-          <div><h3>Picture Puzzle</h3><span>Click two tiles to swap them. Arrange numbers 1–8 in order.</span></div>
+          <div><h3>Picture Puzzle</h3><span>Click two tiles to swap them. Reassemble the Lina &amp; Nonna photo.</span></div>
           <button class="btn small secondary" id="btnPuzzleShuffle">Shuffle</button>
         </div>
         <div class="game-row">
           <div class="puzzle-panel">
             <div id="puzzleBoard"></div>
-            <div class="tagline" style="margin-top:8px;">Click two tiles to swap them. Try to arrange them back into order (1–8).</div>
+            <div class="tagline" style="margin-top:8px;">Click two tiles to swap them. Try to rebuild the full picture (order 1–8).</div>
           </div>
-          <div class="prompt-panel"><div class="tagline">Tip: the empty tile marks your target order.</div></div>
+          <div class="prompt-panel"><div class="tagline">Tip: the blank tile marks where the last piece should go.</div></div>
         </div>
       </section>
 
@@ -446,9 +447,13 @@ function renderPuzzle(){
   puzzleTiles.forEach((val, idx)=>{
     const tile = document.createElement('div');
     tile.className = 'puzzle-tile' + (val===''?' empty':'');
-    tile.textContent = val;
     tile.dataset.index = idx;
-    if(val!=='') tile.addEventListener('click', ()=>selectPuzzleTile(idx));
+    if(val!==''){
+      const pos = val - 1;
+      const col = pos % 3, row = Math.floor(pos / 3);
+      tile.style.backgroundPosition = `${col * 50}% ${row * 50}%`;
+      tile.addEventListener('click', ()=>selectPuzzleTile(idx));
+    }
     puzzleBoard.appendChild(tile);
   });
 }
