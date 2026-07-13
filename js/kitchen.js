@@ -8,6 +8,20 @@ const btnKitchenReset = document.getElementById('btnKitchenReset');
 const btnKitchenLinaStarts = document.getElementById('btnKitchenLinaStarts');
 const btnKitchenNonnaStarts = document.getElementById('btnKitchenNonnaStarts');
 
+const avatarLina = document.getElementById('avatarLina');
+const avatarNonna = document.getElementById('avatarNonna');
+
+function updateTurnAvatars() {
+  if (!avatarLina || !avatarNonna) return;
+  if (kitchenState.turn === 'Lina') {
+    avatarLina.classList.add('active');
+    avatarNonna.classList.remove('active');
+  } else {
+    avatarNonna.classList.add('active');
+    avatarLina.classList.remove('active');
+  }
+}
+
 const kitchenItems = [
   { id: 'pizza', label: 'Pizza', recipe: 'Nonna: Tell Lina about how you like to make pizza at home.' },
   { id: 'pasta', label: 'Pasta', recipe: 'Talk about your favorite pasta dish together.' },
