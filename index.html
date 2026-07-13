@@ -58,10 +58,10 @@ header{display:flex;justify-content:space-between;align-items:flex-start;flex-wr
 @media (max-width:760px){.game-row{grid-template-columns:1fr;}}
 .turn-avatar-row{display:flex;gap:14px;margin-bottom:10px;}
 .turn-avatar{display:flex;flex-direction:column;align-items:center;opacity:.4;transform:scale(.92);transition:.25s;}
-.turn-avatar .avatar-circle{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:var(--panel-alt);border:1px solid rgba(148,163,184,0.4);}
+.turn-avatar .avatar-img{width:60px;height:60px;border-radius:50%;object-fit:cover;background:var(--panel-alt);border:1px solid rgba(148,163,184,0.4);}
 .turn-avatar span{margin-top:4px;font-size:0.72rem;color:var(--muted);}
 .turn-avatar.active{opacity:1;transform:scale(1.08);}
-.turn-avatar.active .avatar-circle{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,0.35);}
+.turn-avatar.active .avatar-img{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,0.35);}
 .turn-avatar.active span{color:var(--accent-soft);font-weight:700;}
 .score-box{background:var(--panel-alt);border-radius:12px;padding:10px;border:1px solid rgba(148,163,184,0.3);display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:0.8rem;}
 .score-label{color:var(--muted);font-size:0.7rem;}
@@ -134,7 +134,7 @@ header{display:flex;justify-content:space-between;align-items:flex-start;flex-wr
         </div>
       </div>
       <div class="hero-art">
-        <div style="font-size:4rem;">👵👧</div>
+        <img src="./assets/hero/lina-nonna-hero.png" alt="Lina and Nonna" class="hero-img" />
         <div class="art-card">🍳 Cooking • Stories • Dress-Up</div>
         <div class="art-card">🚗 Dallas–Fort Worth → El Paso</div>
         <div class="marker-row"><span>Dallas–Fort Worth</span><span>West Texas</span><span>El Paso</span></div>
@@ -186,8 +186,8 @@ header{display:flex;justify-content:space-between;align-items:flex-start;flex-wr
         <div class="game-row">
           <div>
             <div class="turn-avatar-row">
-              <div class="turn-avatar" id="avatarLina"><div class="avatar-circle">👧</div><span>Lina</span></div>
-              <div class="turn-avatar" id="avatarNonna"><div class="avatar-circle">👵</div><span>Nonna</span></div>
+              <div class="turn-avatar" id="avatarLina"><img src="./assets/characters/lina_cutout.png" alt="Lina" class="avatar-img" /><span>Lina</span></div>
+              <div class="turn-avatar" id="avatarNonna"><img src="./assets/characters/nonna_cutout.png" alt="Nonna" class="avatar-img" /><span>Nonna</span></div>
             </div>
             <div class="score-box">
               <div><div class="score-label">Lina's matches</div><div class="score-value lina" id="scoreLina">0</div></div>
