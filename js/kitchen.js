@@ -95,6 +95,8 @@ function buildKitchenGrid(startTurn = 'Lina') {
   pairsLeftEl.textContent = kitchenState.pairsLeft.toString();
   recipeTextEl.textContent =
     'Find a matching pair to unlock a story prompt about food, places, and family.';
+
+  updateTurnAvatars();
 }
 
 function handleKitchenCardClick(card) {
@@ -152,6 +154,8 @@ function handleKitchenCardClick(card) {
         kitchenState.turn = kitchenState.turn === 'Lina' ? 'Nonna' : 'Lina';
         turnLabelEl.textContent = kitchenState.turn;
 
+        updateTurnAvatars();
+
         kitchenState.flippedIndices = [];
         kitchenState.locked = false;
       }, 700);
@@ -163,6 +167,7 @@ export function initKitchenGame() {
   if (!kitchenGrid) return;
 
   buildKitchenGrid('Lina');
+  updateTurnAvatars();
 
   btnKitchenReset?.addEventListener('click', () => buildKitchenGrid(kitchenState.turn));
   btnKitchenLinaStarts?.addEventListener('click', () => buildKitchenGrid('Lina'));
